@@ -51,11 +51,11 @@ async function parse() {
 
 //here i am suppose to consider the mongodb has the data as present in the sampleData json
 app.post("/getAppDetailsById", (req, res) => {
-  User.find({ id: 123 },{ published: true })
+  App.find({ id: 123 },{ published: true })
       .select("id title")
-      .then(users => {
-          if (!users) {
-              return res.status(400).json({ error: "No such user is present with that id" });
+      .then(app => {
+          if (!app) {
+              return res.status(400).json({ error: "No such app is present with that id" });
           }
           res.send(users);
       })
@@ -66,13 +66,13 @@ app.post("/getAppDetailsById", (req, res) => {
 
 //here i am suppose to consider the mongodb has the data as present in the sampleData json
 app.post("/getOrganizationsDetailsById", (req, res) => {
-  User.find({ id: 123 },{ suspended: false })
+  Organization.find({ id: 123 },{ suspended: false })
       .select("name")
-      .then(users => {
-          if (!users) {
-              return res.status(400).json({ error: "No such user is present with that id" });
+      .then(org => {
+          if (!org) {
+              return res.status(400).json({ error: "No such org is present with that id" });
           }
-          res.send(users);
+          res.send(org);
       })
       .catch(err => {
           console.log(err);
